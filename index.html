@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      background-color: black;
+      color: white; /* Set text color to white for better visibility */
+    }
+    .error {
+      color: red;
+    }
+    #button-container {
+      display: flex;
+    }
+    button {
+      
+      margin-right: 20px;
+      /* padding :  */
+    }
+  </style>
+</head>
+<body>
+  <h2>Counter using HTML</h2>
+  <div>
+    <p id="score"> <u>Your current Count is: <span id="current-score">0</span> </u></p>
+    <p id="error-message" class="error" style="display: none;">Error: Cannot go below 0</p>
+  </div>
+  <div id="button-container">
+    <button id="decrement">decrement</button>
+    <button id="increment">increment</button>
+    <button id="clear">Clear</button>
+  </div>
+  <!-- <div id="container">
+    <div id="counter">
+      <button id="decrement">-</button>
+      <div id="count">0</div>
+      <button id="increment">+</button>
+    </div>
+    <button id="clear">Clear</button>
+  </div> -->
+
+  <script>
+    // Add your JavaScript code here
+    const decrementBtn = document.getElementById('decrement');
+    const incrementBtn = document.getElementById('increment');
+    const clearBtn = document.getElementById('clear');
+    // const countDisplay = document.getElementById('score');
+    const errorDisplay = document.getElementById('error-message');
+    const currentScoreDisplay = document.getElementById('current-score');
+    let count = 0;
+
+    decrementBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        currentScoreDisplay.textContent = count;
+        errorDisplay.style.display = 'none';
+      } else {
+        errorDisplay.style.display = 'block';
+      }
+      clearBtn.style.display = count === 0 ? 'none' : 'block';
+      currentScoreDisplay.textContent = count;
+    });
+
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      currentScoreDisplay.textContent = count;
+      clearBtn.style.display = 'block';
+      errorDisplay.style.display = 'none';
+      currentScoreDisplay.textContent = count;
+    });
+
+    clearBtn.addEventListener('click', () => {
+      count = 0;
+      currentScoreDisplay.textContent = count;
+      clearBtn.style.display = 'none';
+      errorDisplay.style.display = 'none';
+      currentScoreDisplay.textContent = count;
+    });
+  </script>
+</body>
+</html>
